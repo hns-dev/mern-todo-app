@@ -161,3 +161,142 @@ button {
 .padding-y {
   padding-block: 1rem;
 }
+
+/* ------------------- */
+/* Compontents         */
+/* ------------------- */
+
+.main-content {
+  /* margin-top: -10.5rem; */
+  margin-top: calc(7rem - 30vh);
+}
+
+/* Button */
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--on-surface-vivid);
+}
+
+.active-btn {
+  color: var(--primary);
+}
+
+/* Header */
+.primary-header {
+  height: 30vh;
+  padding-block: 4rem;
+  background: var(--bg-mobile) no-repeat center/cover;
+}
+
+@media (min-width: 750px) {
+  .primary-header {
+    background: var(--bg-desktop) no-repeat center/cover;
+  }
+}
+
+.primary-header .container {
+  justify-content: space-between;
+}
+
+.primary-header h1 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+}
+
+/* Form */
+form .form-control.flex {
+  justify-content: flex-start;
+  align-items: center;
+  margin-block: 2rem;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+
+form input[type="text"] {
+  width: 100%;
+}
+
+form input[type="text"]::placeholder {
+  color: var(--on-surface-dim);
+}
+
+form input[type="text"]:focus {
+  outline: 0;
+}
+
+/* List container */
+.list {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
+  /* box-shadow: var(--box-shadow-color) 0px 2px 8px 0px; */
+  box-shadow: var(--box-shadow);
+}
+
+.item {
+  --gap: 0;
+  padding: 1rem;
+  grid-template-columns: 1fr 10fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--light-color);
+}
+
+.todo-content {
+  margin-inline: 1rem;
+}
+
+.todo-content.completed {
+  text-decoration: line-through;
+  color: var(--on-surface-dim);
+}
+
+.cross-icon {
+  display: grid;
+  place-items: center;
+}
+
+@media (min-width: 961px) {
+  .cross-icon {
+    visibility: hidden;
+  }
+
+  .item:hover .cross-icon {
+    visibility: visible;
+  }
+}
+
+/* Checkbox */
+.checkmark {
+  border-radius: 50%;
+  width: 1.3rem;
+  height: 1.3rem;
+  background: var(--light-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 300ms ease-in-out;
+}
+
+.item .checkmark:hover,
+.item:hover .checkmark {
+  background: var(--gradient);
+}
+
+.checkmark.completed {
+  background: var(--gradient);
+}
+
+.checkmark-inner {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  background-color: var(--surface);
+  border-radius: 50%;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
