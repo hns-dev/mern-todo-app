@@ -1,13 +1,163 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Colors */
+  --background: hsl(0, 0%, 98%);
+  --surface: hsl(0, 0%, 100%);
+  --primary: hsl(220, 98%, 61%);
+  --on-background: hsl(236, 9%, 61%);
+  --on-surface-vivid: hsl(235, 19%, 35%);
+  --on-surface-dim: hsl(236, 9%, 61%);
+  --light-color: hsl(233, 11%, 84%);
+
+  --gradient: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  --shadow-color: hsl(236, 9%, 61%, 0.07);
+  --box-shadow: var(--shadow-color) 0px 4px 8px,
+    var(--shadow-color) 0px 6px 12px, var(--shadow-color) 0px 8px 16px,
+    var(--shadow-color) 0px 12px 24px;
+
+  /* Typography */
+  --font-size: 1.125rem;
+  --font-family: "Josefin Sans";
+  --font-weight-regular: 400;
+  --font-weight-semibold: 700;
+
+  /* BG images */
+  --bg-desktop: url("./images/bg-desktop-light.jpg");
+  --bg-mobile: url("./images/bg-mobile-light.jpg");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark {
+  /* Colors */
+  --background: hsl(235, 21%, 11%);
+  --surface: hsl(235, 24%, 19%);
+  --on-background: hsl(233, 14%, 35%);
+  --on-surface-vivid: hsl(234, 39%, 85%);
+  --on-surface-dim: hsl(234, 11%, 52%);
+  --light-color: hsl(235, 19%, 35%);
+
+  --shadow-color: hsl(235, 10%, 5%, 0.1);
+  --box-shadow: var(--shadow-color) 0px 4px 8px,
+    var(--shadow-color) 0px 6px 12px, var(--shadow-color) 0px 8px 16px,
+    var(--shadow-color) 0px 12px 24px;
+
+  /* BG images */
+  --bg-desktop: url("./images/bg-desktop-dark.jpg");
+  --bg-mobile: url("./images/bg-mobile-dark.jpg");
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background: var(--background);
+  color: var(--on-surface-vivid);
+  font-size: 1rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+@media (max-width: 383px) {
+  body {
+    font-size: 0.937rem;
+  }
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* General */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.push {
+  margin-left: auto;
+}
+
+/* Colors */
+.background-color {
+  background-color: var(--background);
+}
+
+.surface-color {
+  background-color: var(--surface);
+}
+
+.text-on-background {
+  color: var(--on-background);
+}
+
+.text-on-surface-vivid {
+  color: var(--on-surface-vivid);
+}
+
+.text-on-surface-dim {
+  color: var(--on-surface-dim);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.msg {
+  padding-block: 1.5rem;
+}
+
+.msg-margin {
+  margin-block: 1.5rem;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.padding-y {
+  padding-block: 1rem;
 }
