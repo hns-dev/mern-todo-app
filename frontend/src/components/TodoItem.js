@@ -1,7 +1,24 @@
 import React from "react";
+import { useTodosContext } from "../hooks/useTodosContext";
 
 function TodoItem({ todo }) {
-  const handleTodoStatusChange = async (id, completed) => {};
+  const { dispatch } = useTodosContext();
+
+  const handleTodoStatusChange = async (id, completed) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ completed: !completed }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "UPDATE_TODO", payload: json });
+    }
+  };
 
   const handleDeleteTodo = async (id) => {};
 
