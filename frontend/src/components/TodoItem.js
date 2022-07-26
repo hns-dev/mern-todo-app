@@ -20,7 +20,17 @@ function TodoItem({ todo }) {
     }
   };
 
-  const handleDeleteTodo = async (id) => {};
+  const handleDeleteTodo = async (id) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "DELETE",
+    });
+
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "DELETE_TODO", payload: json });
+    }
+  };
 
   return (
     <div className="item grid surface-color">
