@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useTodosContext } from "../hooks/useTodosContext";
 import TodoItem from "./TodoItem";
+import TodoListFooter from "./TodoListFooter";
 
 function TodoList() {
   const { todos, dispatch } = useTodosContext();
   const [error, setError] = useState();
+  const [filterOption, setFilterOption] = useState("All");
+
+  function handleFilterOptionChange(filterText) {
+    setFilterOption(filterText);
+  }
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -22,14 +28,38 @@ function TodoList() {
     fetchTodos();
   }, [dispatch]);
 
+  // Filter todo list
+  const filterTodolist = () => {
+    if (todos) {
+      if (filterOption === "All") return todos;
+
+      if (filterOption === "Active")
+        return todos.filter((todo) => !todo.completed);
+
+      if (filterOption === "Completed")
+        return todos.filter((todo) => todo.completed);
+    }
+
+    return [];
+  };
+
   return (
-    <div className="list surface-color">
-      {todos.length > 0 ? (
-        todos.map((todo) => <TodoItem key={todo.content} todo={todo} />)
-      ) : (
-        <p className="msg text-center">Your list is empty.</p>
-      )}
-    </div>
+    <>
+      <div className="list surface-color">
+        {filterTodolist().length > 0 ? (
+          filterTodolist().map((todo) => (
+            <TodoItem key={todo.content} todo={todo} />
+          ))
+        ) : (
+          <p className="msg text-center">Your list is empty.</p>
+        )}
+      </div>
+
+      <TodoListFooter
+        filterOption={filterOption}
+        onFilterOptionChange={handleFilterOptionChange}
+      />
+    </>
   );
 }
 

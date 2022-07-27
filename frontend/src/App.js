@@ -1,8 +1,7 @@
+import useDarkMode from "./hooks/useDarkMode";
 import Header from "./components/Header";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import TodoListFooter from "./components/TodoListFooter";
-import useDarkMode from "./hooks/useDarkMode";
 import "./index.css";
 
 function App() {
@@ -17,8 +16,6 @@ function App() {
           <TodoForm />
 
           <TodoList />
-
-          <TodoListFooter />
 
           <p className="msg msg-margin text-center text-on-surface-dim">
             Drag and drop to reorder list
