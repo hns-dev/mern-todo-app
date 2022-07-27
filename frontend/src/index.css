@@ -300,3 +300,63 @@ form input[type="text"]:focus {
 input[type="checkbox"] {
   display: none;
 }
+
+/* List footer */
+.list-footer {
+  --gap: 1.5rem;
+  flex-direction: column;
+}
+
+.list-footer .content {
+  --gap: 0;
+  box-shadow: var(--box-shadow);
+}
+
+.list-footer .content > *,
+.list-footer > * {
+  width: 100%;
+}
+
+.active-todos-count {
+  border-bottom-left-radius: 5px;
+  padding-left: 1rem;
+}
+
+.btn-clear-completed-todos {
+  border-bottom-right-radius: 5px;
+  padding-right: 1rem;
+  text-align: right;
+}
+
+.filter-list {
+  --gap: 0;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+
+.filter-list > * {
+  padding-inline: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .list-footer {
+    --gap: 0;
+    flex-direction: row;
+    box-shadow: var(--box-shadow);
+  }
+
+  .list-footer .content {
+    display: contents;
+  }
+
+  .active-todos-count,
+  .filter-list {
+    order: -1;
+  }
+
+  .filter-list {
+    border-radius: 0;
+    box-shadow: initial;
+  }
+}
