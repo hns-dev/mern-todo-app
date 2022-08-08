@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useTodosContext } from "../hooks/useTodosContext";
 import TodoItem from "./TodoItem";
 import TodoListFooter from "./TodoListFooter";
@@ -43,17 +44,50 @@ function TodoList() {
     return [];
   };
 
+  // Handle Drag & Drop
+  const handleOnDragEnd = (result) => {
+    const { destination, source } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const newList = Array.from(todos);
+    const [draggableItem] = newList.splice(source.index, 1);
+    newList.splice(destination.index, 0, draggableItem);
+
+    dispatch({ type: "SET_TODOS", payload: newList });
+  };
+
   return (
     <>
-      <div className="list surface-color">
-        {filterTodolist().length > 0 ? (
-          filterTodolist().map((todo) => (
-            <TodoItem key={todo.content} todo={todo} />
-          ))
-        ) : (
-          <p className="msg text-center">Your list is empty.</p>
-        )}
-      </div>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="dropList">
+          {(provided) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className="list surface-color"
+            >
+              {filterTodolist().length > 0 ? (
+                filterTodolist().map((todo, index) => (
+                  <TodoItem key={todo._id} index={index} todo={todo} />
+                ))
+              ) : (
+                <p className="msg text-center">Your list is empty.</p>
+              )}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
 
       <TodoListFooter
         filterOption={filterOption}
