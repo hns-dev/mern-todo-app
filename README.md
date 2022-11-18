@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [comming soon]()
+- Live Site URL: [Todo App](https://todo-app-mern-hns.herokuapp.com/)
 
 ## My process
 
